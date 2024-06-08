@@ -3,7 +3,7 @@
 
 #define MyAppName "MusicFree"
 #ifndef MyAppVersion
-#define MyAppVersion "0.0.0-alpha.0"
+#define MyAppVersion "0.0.3"
 #endif
 #define MyAppPublisher "猫头猫"
 #define MyAppURL "http://musicfree.upup.fun"
