@@ -1,0 +1,34 @@
+name: 打包win版
+on: 
+    workflow_dispatch:
+jobs:
+    build-windows: 
+        runs-on: windows-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 20
+            - run: echo (node -p -e '`VERSION=${require("./package.json").version}`') >> $Env:GITHUB_ENV
+            - run: npm install
+            - run: npm run package
+            - uses: maotoumao/inno-setup-action-cli@main
+              with: 
+                  filepath: ./release/build-windows.iss
+                  variables: /DMyAppVersion=${{ env.VERSION }} /DMyAppId=${{ secrets.MYAPPID }}
+            - name: Upload Setup
+              uses: actions/upload-artifact@v3
+              with:
+                  name: windows-release
+                  path: ./out/MusicFreeSetup.exe
+            - name: Generate Portable
+              run: mkdir ./out/MusicFree-win32-x64/portable
+            - uses: vimtor/action-zip@v1.1
+              with:
+                files: ./out/MusicFree-win32-x64
+                dest: MusicFree-win32-x64-portable.zip
+            - name: Upload Portable
+              uses: actions/upload-artifact@v3
+              with:
+                  name: windows-portable-release
+                  path: ${{ github.workspace }}/MusicFree-win32-x64-portable.zip
