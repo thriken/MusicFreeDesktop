@@ -5,8 +5,8 @@ jobs:
     build-windows: 
         runs-on: windows-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                 node-version: 20
             - run: echo (node -p -e '`VERSION=${require("./package.json").version}`') >> $Env:GITHUB_ENV
@@ -17,18 +17,18 @@ jobs:
                   filepath: ./release/build-windows.iss
                   variables: /DMyAppVersion=${{ env.VERSION }} /DMyAppId=${{ secrets.MYAPPID }}
             - name: Upload Setup
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: windows-release
-                  path: ./out/MusicFreeSetup.exe
+                  path: ./out/MusicFreeSetup-${{ env.VERSION }}.exe
             - name: Generate Portable
               run: mkdir ./out/MusicFree-win32-x64/portable
             - uses: vimtor/action-zip@v1.1
               with:
                 files: ./out/MusicFree-win32-x64
-                dest: MusicFree-win32-x64-portable.zip
+                dest: MusicFree-win32-x64-${{ env.VERSION }}-portable.zip
             - name: Upload Portable
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: windows-portable-release
-                  path: ${{ github.workspace }}/MusicFree-win32-x64-portable.zip
+                  path: ${{ github.workspace }}/MusicFree-win32-x64-${{ env.VERSION }}-portable.zip
