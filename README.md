@@ -10,6 +10,26 @@
 
 ---
 
+## 源项目更新之后合并本项目
+
+如果你已经fork了一个项目，并对其进行了修改，而原始项目（upstream）有了更新，你需要将upstream的更新合并到你的fork中。以下是如何操作的步骤：
+
+1. 首先，确保你的本地仓库是最新的。在终端或命令行中，导航到你fork的项目目录。
+
+2. 添加upstream仓库的引用。这将允许你从原始项目拉取更新。
+git remote add upstream https://github.com/maotoumao/MusicFreeDesktop.git
+3. 获取upstream的更新。这将保存为一个新的分支upstream/main（假设原始项目的主分支是main）
+git fetch upstream
+4. 切换到你的本地主分支（例如main）。
+git checkout main
+5. 将upstream的更新合并到你的本地主分支。
+git merge upstream/main
+6. 如果有冲突，解决它们，并提交合并。
+6. 将更新推送到你的fork。
+git push origin main
+
+确保在合并upstream的更新之前，你的本地更改已经正确提交，并且你处于正确的分支上。如果你的更改不是从main分支开始的，你可能需要调整步骤中的分支名称。
+
 ## 简介
 
 一个插件化、定制化、无广告的免费音乐播放器。
