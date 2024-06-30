@@ -23,7 +23,7 @@ jobs:
                   path: ./out/MusicFreeSetup-${{ env.VERSION }}.exe
             - name: Generate Portable
               run: mkdir ./out/MusicFree-win32-x64/portable
-            - uses: vimtor/action-zip@v1.1
+            - uses: vimtor/action-zip@v1.2
               with:
                 files: ./out/MusicFree-win32-x64
                 dest: MusicFree-win32-x64-${{ env.VERSION }}-portable.zip
