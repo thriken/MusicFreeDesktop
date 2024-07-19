@@ -10,7 +10,7 @@ function getB64Picture(picture: IPicture) {
   return `data:${picture.format};base64,${picture.data.toString("base64")}`;
 }
 
-const specialEncoding = ["GB2312"];
+const specialEncoding = ["GBk", "GB2312", "Big5", "EUC-CN", "EUC-TW", "UTF-8"];
 
 export async function parseLocalMusicItem(
   filePath: string

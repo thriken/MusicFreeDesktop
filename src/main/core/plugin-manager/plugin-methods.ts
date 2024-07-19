@@ -145,10 +145,7 @@ export default class PluginMethods implements IPlugin.IPluginInstanceMethods {
           rawLrc = await fs.readFile(lrcFilePath, "utf8");
 
           if ((await safeStat(lrcTranslationPathWithoutExt + ext))?.isFile()) {
-            translation = await fs.readFile(
-              lrcTranslationPathWithoutExt + ext,
-              "utf8"
-            );
+            translation = await fs.readFile(lrcTranslationPathWithoutExt + ext, "utf8");
           }
 
           if (rawLrc) {
@@ -172,6 +169,7 @@ export default class PluginMethods implements IPlugin.IPluginInstanceMethods {
     //         lrc: lrcUrl,
     //     };
     // }
+
     // 3.优先使用url
 
     try {
